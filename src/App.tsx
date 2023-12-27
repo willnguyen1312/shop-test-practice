@@ -1,4 +1,4 @@
-import { Text } from "@shopify/polaris";
+import { Page, Text } from "@shopify/polaris";
 import { useEffect, useState } from "react";
 
 export function AppOne() {
@@ -45,7 +45,7 @@ export function AppThree() {
   }
 
   return (
-    <main>
+    <Page>
       <Form onSubmit={handleSubmit}>
         <TextField
           type="number"
@@ -62,12 +62,14 @@ export function AppThree() {
           autoComplete="off"
         />
 
-        <Text as="h3">Result: {result}</Text>
+        <Text visuallyHidden as="h3">
+          Result: {result}
+        </Text>
 
         <p role="status">Result: {result}</p>
 
         <Button submit>Calculate</Button>
       </Form>
-    </main>
+    </Page>
   );
 }
