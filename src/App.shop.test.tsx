@@ -1,10 +1,10 @@
 import { describe, it, vi } from "vitest";
 
 import { mount } from "@shopify/react-testing";
-import { AppOne } from "./App";
+import { AppOne, AppTwo } from "./App";
 import { checkA11y } from "./testUtils";
 
-describe("<App />", () => {
+describe("<AppOne /> from react-testing", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
     const wrapper = mount(<AppOne />);
@@ -20,6 +20,31 @@ describe("<App />", () => {
 
     expect(wrapper.html()).toMatchInlineSnapshot(
       `"<p class="Polaris-Text--root">Loading</p>"`,
+    );
+
+    vi.useRealTimers();
+    await checkA11y(wrapper.html());
+  });
+});
+
+describe("<AppTwo /> from react-testing", () => {
+  it("renders without crashing", async () => {
+    vi.useFakeTimers();
+    const wrapper = mount(<AppTwo />);
+    await vi.runAllTimersAsync();
+
+    expect(wrapper.debug()).toMatchInlineSnapshot(`
+      "<AppTwo>
+        <div>
+          <Text as="p">
+            <p />
+          </Text>
+        </div>
+      </AppTwo>"
+    `);
+
+    expect(wrapper.html()).toMatchInlineSnapshot(
+      `"<div><h1 class="Polaris-Text--root">Loaded</h1></div>"`,
     );
 
     vi.useRealTimers();

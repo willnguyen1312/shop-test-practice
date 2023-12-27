@@ -1,10 +1,10 @@
 import { Text } from "@shopify/polaris";
-import React from "react";
+import { useEffect, useState } from "react";
 
 export function AppOne() {
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -15,4 +15,20 @@ export function AppOne() {
   }
 
   return <Text as="h1">Loaded</Text>;
+}
+
+export function AppTwo() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
+  return (
+    <div>
+      {isLoading ? <Text as="p">Loading</Text> : <Text as="h1">Loaded</Text>}
+    </div>
+  );
 }
