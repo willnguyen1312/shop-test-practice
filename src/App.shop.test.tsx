@@ -1,7 +1,8 @@
 import { describe, it, vi } from "vitest";
 
+import { Form, PolarisTestProvider, Text, TextField } from "@shopify/polaris";
 import { mount } from "@shopify/react-testing";
-import { AppOne, AppTwo } from "./App";
+import { AppOne, AppThree, AppTwo } from "./App";
 import { checkA11y } from "./testUtils";
 
 describe("<AppOne /> from react-testing", () => {
@@ -49,5 +50,33 @@ describe("<AppTwo /> from react-testing", () => {
 
     vi.useRealTimers();
     await checkA11y(wrapper.html());
+  });
+});
+
+describe("<AppThree /> from react-testing", () => {
+  it("renders without crashing", async () => {
+    const wrapper = mount(
+      <PolarisTestProvider>
+        <AppThree />
+      </PolarisTestProvider>,
+    );
+
+    const firstValueInput = wrapper.find(TextField, {
+      label: "First number",
+    });
+    const secondValueInput = wrapper.find(TextField, {
+      label: "Second Number",
+    });
+
+    firstValueInput?.trigger("onChange", "10");
+    secondValueInput?.trigger("onChange", "20");
+
+    const form = wrapper.find(Form);
+    form?.trigger("onSubmit");
+
+    const result = wrapper.find(Text, {
+      as: "p",
+    });
+    expect(result).toContainReactText("Result: 30");
   });
 });
