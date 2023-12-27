@@ -61,9 +61,9 @@ export function AppThree() {
         autoComplete="off"
       />
 
-      <Text as="p">Result: {result}</Text>
+      <Text as="h3">Result: {result}</Text>
 
-      <Button>Calculate</Button>
+      <Button submit>Calculate</Button>
     </Form>
   );
 }

@@ -75,7 +75,7 @@ describe("<AppThree /> from react-testing", () => {
     form?.trigger("onSubmit");
 
     const result = wrapper.find(Text, {
-      as: "p",
+      as: "h3",
     });
     expect(result).toContainReactText("Result: 30");
   });
