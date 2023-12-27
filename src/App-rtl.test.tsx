@@ -62,9 +62,9 @@ describe("<AppThree /> from rtl", () => {
     const submitButton = screen.getByText(/Calculate/i);
     await user.click(submitButton);
 
-    expect(
-      screen.getByRole("heading", { name: /result: 30/i }),
-    ).toBeInTheDocument();
+    const result = screen.getByRole("status");
+    expect(result).toHaveTextContent("Result: 30");
+    expect(result).toBeInTheDocument();
   });
 
   it("should work for keyboard-only user", async () => {
@@ -75,20 +75,17 @@ describe("<AppThree /> from rtl", () => {
       </PolarisTestProvider>,
     );
 
+    const result = screen.getByRole("status");
+
     await user.tab();
     await user.keyboard("20");
     await user.keyboard("{enter}");
-    expect(
-      screen.getByRole("heading", { name: /result: 20/i }),
-    ).toBeInTheDocument();
+    expect(result).toHaveTextContent("Result: 20");
 
     await user.tab();
     await user.keyboard("30");
     await user.tab();
     await user.keyboard("{enter}");
-
-    expect(
-      screen.getByRole("heading", { name: /result: 50/i }),
-    ).toBeInTheDocument();
+    expect(result).toHaveTextContent("Result: 50");
   });
 });

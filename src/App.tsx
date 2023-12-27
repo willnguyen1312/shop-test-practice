@@ -64,6 +64,8 @@ export function AppThree() {
 
         <Text as="h3">Result: {result}</Text>
 
+        <p role="status">Result: {result}</p>
+
         <Button submit>Calculate</Button>
       </Form>
     </main>
