@@ -1,6 +1,7 @@
 import { destroyAll } from "@shopify/react-testing";
 import "@shopify/react-testing/matchers";
 import "@testing-library/jest-dom";
+import "jest-axe/extend-expect";
 import { afterAll, afterEach, beforeAll } from "vitest";
 import { server } from "./src/mocks/node";
 
