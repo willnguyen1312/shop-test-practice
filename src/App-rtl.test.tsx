@@ -1,13 +1,13 @@
 import { act, render, screen } from "@testing-library/react";
 import { describe, it, vi } from "vitest";
 
-import App from "./App";
+import { AppOne } from "./App";
 import { checkA11y } from "./testUtils";
 
 describe("<App />", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
-    const { container } = render(<App />);
+    const { container } = render(<AppOne />);
 
     await act(async () => await vi.runAllTimersAsync());
 

@@ -1,13 +1,13 @@
 import { Text } from "@shopify/polaris";
 import React from "react";
 
-function App() {
+export function AppOne() {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 500);
   }, []);
 
   if (isLoading) {
@@ -16,5 +16,3 @@ function App() {
 
   return <Text as="h1">Loaded</Text>;
 }
-
-export default App;

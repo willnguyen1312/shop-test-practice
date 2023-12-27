@@ -1,21 +1,21 @@
 import { describe, it, vi } from "vitest";
 
 import { mount } from "@shopify/react-testing";
-import App from "./App";
+import { AppOne } from "./App";
 import { checkA11y } from "./testUtils";
 
 describe("<App />", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
-    const wrapper = mount(<App />);
+    const wrapper = mount(<AppOne />);
     await vi.runAllTimersAsync();
 
     expect(wrapper.debug()).toMatchInlineSnapshot(`
-      "<App>
+      "<AppOne>
         <Text as="p">
           <p />
         </Text>
-      </App>"
+      </AppOne>"
     `);
 
     expect(wrapper.html()).toMatchInlineSnapshot(
