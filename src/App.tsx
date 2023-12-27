@@ -45,25 +45,27 @@ export function AppThree() {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <TextField
-        type="number"
-        value={firstValue.toString()}
-        onChange={(value) => setFirstValue(+value)}
-        label="First number"
-        autoComplete="off"
-      />
-      <TextField
-        type="number"
-        value={secondValue.toString()}
-        onChange={(value) => setSecondValue(+value)}
-        label="Second Number"
-        autoComplete="off"
-      />
+    <main>
+      <Form onSubmit={handleSubmit}>
+        <TextField
+          type="number"
+          value={firstValue.toString()}
+          onChange={(value) => setFirstValue(+value)}
+          label="First number"
+          autoComplete="off"
+        />
+        <TextField
+          type="number"
+          value={secondValue.toString()}
+          onChange={(value) => setSecondValue(+value)}
+          label="Second Number"
+          autoComplete="off"
+        />
 
-      <Text as="h3">Result: {result}</Text>
+        <Text as="h3">Result: {result}</Text>
 
-      <Button submit>Calculate</Button>
-    </Form>
+        <Button submit>Calculate</Button>
+      </Form>
+    </main>
   );
 }
