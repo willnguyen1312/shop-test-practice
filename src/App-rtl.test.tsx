@@ -1,7 +1,9 @@
 import { act, render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { describe, it, vi } from "vitest";
 
-import { AppOne, AppTwo } from "./App";
+import { PolarisTestProvider } from "@shopify/polaris";
+import { AppOne, AppThree, AppTwo } from "./App";
 import { checkA11y } from "./testUtils";
 
 describe("<AppOne /> from rtl", () => {
@@ -37,5 +39,56 @@ describe("<AppTwo /> from rtl", () => {
 
     vi.useRealTimers();
     await checkA11y(container);
+  });
+});
+
+describe("<AppThree /> from rtl", () => {
+  it("should work for normal user", async () => {
+    const user = userEvent.setup();
+    render(
+      <PolarisTestProvider>
+        <AppThree />
+      </PolarisTestProvider>,
+    );
+
+    const firstNumberInput = screen.getByLabelText(/First number/i);
+    await user.click(firstNumberInput);
+    await user.type(firstNumberInput, "10");
+
+    const secondNumberInput = screen.getByLabelText(/Second number/i);
+    await user.click(secondNumberInput);
+    await user.type(secondNumberInput, "20");
+
+    const submitButton = screen.getByText(/Calculate/i);
+    await user.click(submitButton);
+
+    expect(
+      screen.getByRole("heading", { name: /result: 30/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("should work for keyboard-only user", async () => {
+    const user = userEvent.setup();
+    render(
+      <PolarisTestProvider>
+        <AppThree />
+      </PolarisTestProvider>,
+    );
+
+    await user.tab();
+    await user.keyboard("20");
+    await user.keyboard("{enter}");
+    expect(
+      screen.getByRole("heading", { name: /result: 20/i }),
+    ).toBeInTheDocument();
+
+    await user.tab();
+    await user.keyboard("30");
+    await user.tab();
+    await user.keyboard("{enter}");
+
+    expect(
+      screen.getByRole("heading", { name: /result: 50/i }),
+    ).toBeInTheDocument();
   });
 });
