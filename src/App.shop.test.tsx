@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-
+import { act } from "react-dom/test-utils";
 import { Form, PolarisTestProvider, Text, TextField } from "@shopify/polaris";
 import { mount } from "@shopify/react-testing";
 import { AppOne, AppThree, AppTwo } from "./App";
@@ -9,7 +9,7 @@ describe("<AppOne /> from react-testing", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
     const wrapper = mount(<AppOne />);
-    await vi.runAllTimersAsync();
+    await act(() => vi.runAllTimersAsync());
 
     expect(wrapper.debug()).toMatchInlineSnapshot(`
       "<AppOne>
@@ -32,7 +32,7 @@ describe("<AppTwo /> from react-testing", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
     const wrapper = mount(<AppTwo />);
-    await vi.runAllTimersAsync();
+    await act(() => vi.runAllTimersAsync());
 
     expect(wrapper.debug()).toMatchInlineSnapshot(`
       "<AppTwo>

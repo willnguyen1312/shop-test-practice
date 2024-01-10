@@ -10,7 +10,6 @@ describe("<AppOne /> from rtl", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
     const { container } = render(<AppOne />);
-
     await act(() => vi.runAllTimersAsync());
 
     screen.getByText(/Loaded/i);
@@ -28,7 +27,6 @@ describe("<AppTwo /> from rtl", () => {
   it("renders without crashing", async () => {
     vi.useFakeTimers();
     const { container } = render(<AppTwo />);
-
     await act(() => vi.runAllTimersAsync());
 
     screen.getByText(/Loaded/i);
