@@ -5,7 +5,7 @@
 ### Installation
 
 ```bash
-pnpm test
+pnpm install
 ```
 
 ### Vitest
@@ -14,7 +14,7 @@ pnpm test
 pnpm test:unit:run
 ```
 
-### Playright test
+### Playwright test
 
 ```bash
 pnpm test:e2e:run
