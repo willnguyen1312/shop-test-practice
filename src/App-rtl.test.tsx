@@ -11,7 +11,7 @@ describe("<AppOne /> from rtl", () => {
     vi.useFakeTimers();
     const { container } = render(<AppOne />);
 
-    await act(async () => await vi.runAllTimersAsync());
+    await act(() => vi.runAllTimersAsync());
 
     screen.getByText(/Loaded/i);
 
@@ -29,7 +29,7 @@ describe("<AppTwo /> from rtl", () => {
     vi.useFakeTimers();
     const { container } = render(<AppTwo />);
 
-    await act(async () => await vi.runAllTimersAsync());
+    await act(() => vi.runAllTimersAsync());
 
     screen.getByText(/Loaded/i);
 
