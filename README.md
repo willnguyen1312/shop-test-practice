@@ -11,11 +11,11 @@ pnpm install
 ### Vitest
 
 ```bash
-pnpm test:unit:run
+pnpm test:unit:watch
 ```
 
 ### Playwright test
 
 ```bash
-pnpm test:e2e:run
+pnpm test:e2e:watch
 ```
