@@ -38,3 +38,28 @@ test("Playground component should render successfully", async () => {
   //   How to test async code with @shopify/react-testing? 😅
   //   expect(wrapper).toContainReactText("Third: 3");
 });
+
+test("events do not buble in react-testing 🤷‍♂️", async () => {
+  let divClick = false;
+  let buttonClick = false;
+  const wrapper = mount(
+    <div
+      onClick={() => {
+        divClick = true;
+      }}
+    >
+      <button
+        onClick={() => {
+          buttonClick = true;
+        }}
+      >
+        Click me
+      </button>
+    </div>,
+  );
+
+  wrapper.find("button")?.trigger("onClick");
+
+  expect(divClick).toBe(false);
+  expect(buttonClick).toBe(true);
+});
