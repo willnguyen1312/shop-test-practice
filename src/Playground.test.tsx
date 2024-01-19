@@ -39,7 +39,7 @@ test("Playground component should render successfully", async () => {
   //   expect(wrapper).toContainReactText("Third: 3");
 });
 
-test("events do not bubble in react-testing by default 🤷‍♂️", async () => {
+test("events do not bubble in react-testing by default 😅", async () => {
   let divClick = false;
   let buttonClick = false;
   const wrapper = mount(
