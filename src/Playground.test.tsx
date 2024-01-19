@@ -39,7 +39,7 @@ test("Playground component should render successfully", async () => {
   //   expect(wrapper).toContainReactText("Third: 3");
 });
 
-test("events do not buble in react-testing 🤷‍♂️", async () => {
+test("events do not bubble in react-testing by default 🤷‍♂️", async () => {
   let divClick = false;
   let buttonClick = false;
   const wrapper = mount(
@@ -62,4 +62,12 @@ test("events do not buble in react-testing 🤷‍♂️", async () => {
 
   expect(divClick).toBe(false);
   expect(buttonClick).toBe(true);
+
+  wrapper.find("button")!.domNode!.dispatchEvent(
+    new MouseEvent("click", {
+      bubbles: true,
+    }),
+  );
+
+  expect(divClick).toBe(true);
 });
